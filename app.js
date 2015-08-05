@@ -8,11 +8,13 @@ app.use(morgan('combined', {
   skip: function (req, res) { return res.statusCode < 400 }
 }));
 
+app.use(express.static('public'));
+
 app.use('/',routes);
 
-app.use('/stylesheets',function(req,res){
-	res.sendFile(__dirname+"/public/stylesheets"+req.path);
-})
+// app.use('/stylesheets',function(req,res){
+// 	res.sendFile(__dirname+"/public/stylesheets"+req.path);
+// })
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
